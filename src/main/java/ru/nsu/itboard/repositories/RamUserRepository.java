@@ -6,12 +6,11 @@ import ru.nsu.itboard.exceptions.WrongArgumentException;
 import ru.nsu.itboard.models.User;
 import ru.nsu.itboard.util.UserFilterContext;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class RamUserRepository implements UserRepository {
-    private Map<String, User> users;
+    private Map<String, User> users = new HashMap<>();
 
     private User checkUser(String userId){
         User user = users.get(userId);
@@ -45,7 +44,7 @@ public class RamUserRepository implements UserRepository {
     }
 
     @Override
-    public List<User> getUsers(UserFilterContext filterContext) {
-        return null;
+    public Collection<User> getUsers(UserFilterContext filterContext) {
+        return users.values();
     }
 }

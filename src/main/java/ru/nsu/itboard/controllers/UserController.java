@@ -8,6 +8,8 @@ import ru.nsu.itboard.models.UserTo;
 import ru.nsu.itboard.services.UserService;
 import ru.nsu.itboard.util.UserFilterContext;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -47,7 +49,7 @@ public class UserController {
     }
 
     @GetMapping(USER_PATH + "/search")
-    public List<User> searchUsers(
+    public Collection<User> searchUsers(
             @RequestBody UserFilterContext filterContext) {
         return userService.getUsers(filterContext);
     }

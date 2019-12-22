@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 import ru.nsu.itboard.models.User;
 import ru.nsu.itboard.util.UserFilterContext;
 
-import java.util.List;
+import java.util.Collection;
 
 @Repository
 public interface UserRepository {
@@ -16,5 +16,5 @@ public interface UserRepository {
 
     void updateUser(String userId, User user);
 
-    List<User> getUsers(UserFilterContext filterContext);
+    Collection<User> getUsers(UserFilterContext filterContext);
 }

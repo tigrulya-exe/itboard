@@ -7,6 +7,8 @@ import ru.nsu.itboard.models.UserTo;
 import ru.nsu.itboard.repositories.UserRepository;
 import ru.nsu.itboard.util.UserFilterContext;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +46,7 @@ public class UserService {
         return toUserTOs(users.values());
     }
 
-    public List<User> getUsers(UserFilterContext filterContext) {
+    public Collection<User> getUsers(UserFilterContext filterContext) {
         return userRepository.getUsers(filterContext);
     }
 
