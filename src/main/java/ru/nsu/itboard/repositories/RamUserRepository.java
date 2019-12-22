@@ -1,0 +1,51 @@
+package ru.nsu.itboard.repositories;
+
+import org.springframework.stereotype.Repository;
+import ru.nsu.itboard.exceptions.NotFoundException;
+import ru.nsu.itboard.exceptions.WrongArgumentException;
+import ru.nsu.itboard.models.User;
+import ru.nsu.itboard.util.UserFilterContext;
+
+import java.util.List;
+import java.util.Map;
+
+@Repository
+public class RamUserRepository implements UserRepository {
+    private Map<String, User> users;
+
+    private User checkUser(String userId){
+        User user = users.get(userId);
+        if(user == null)
+            throw new NotFoundException("Wrong userId");
+        return user;
+    }
+
+    @Override
+    public User getUser(String userId) {
+        return checkUser(userId);
+    }
+
+    @Override
+    public void addUser(User user) {
+        if(user == null)
+            throw new WrongArgumentException("Wrong user");
+        users.put(user.getId(), user);
+    }
+
+    @Override
+    public void removeUser(String userId) {
+        checkUser(userId);
+        users.remove(userId);
+    }
+
+    @Override
+    public void updateUser(String userId, User user) {
+        checkUser(userId);
+        users.put(userId, user);
+    }
+
+    @Override
+    public List<User> getUsers(UserFilterContext filterContext) {
+        return null;
+    }
+}
