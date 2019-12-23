@@ -21,4 +21,20 @@ public class UserTo {
         this.subscriptionsCount = user.getSubscriptions().size();
         this.isPrivateProfile = user.isPrivateProfile();
     }
+
+    public UserTo(String id){
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj == null){
+            return false;
+        }
+        if (obj instanceof UserTo){
+            UserTo userTo = (UserTo)obj;
+            return userTo.getId().equals(id);
+        }
+        return false;
+    }
 }

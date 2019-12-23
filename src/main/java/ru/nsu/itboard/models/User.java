@@ -25,4 +25,5 @@ public class User {
     public void generateId(){
         id = UUID.randomUUID().toString();
     }
+
 }

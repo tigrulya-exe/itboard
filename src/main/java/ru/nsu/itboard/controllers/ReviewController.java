@@ -1,6 +1,7 @@
 package ru.nsu.itboard.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
 import ru.nsu.itboard.models.Review;
 import ru.nsu.itboard.services.ReviewService;
@@ -8,8 +9,10 @@ import ru.nsu.itboard.services.ReviewService;
 import java.util.List;
 
 @RestController
+@ComponentScan(value = "ru.nsu.itboard.exceptions")
+
 public class ReviewController {
-    private static final String EVENT_REVIEWS_PATH = "/evt/{eventId}/r";
+    private static final String EVENT_REVIEWS_PATH = "/event/{eventId}/r";
 
     private ReviewService reviewService;
 

@@ -1,4 +1,4 @@
-package ru.nsu.itboard.controllers;
+package ru.nsu.itboard.exceptions;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

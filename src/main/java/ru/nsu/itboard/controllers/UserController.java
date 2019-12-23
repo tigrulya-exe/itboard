@@ -1,6 +1,7 @@
 package ru.nsu.itboard.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.nsu.itboard.models.User;
@@ -13,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
+@ComponentScan(value = "ru.nsu.itboard.exceptions")
 public class UserController {
     private static final String USER_PATH = "/usr";
 
@@ -71,6 +73,4 @@ public class UserController {
                                            @PathVariable String unsubscribeToId) {
         userService.unsubscribeUser(id, unsubscribeToId);
     }
-
-
 }
