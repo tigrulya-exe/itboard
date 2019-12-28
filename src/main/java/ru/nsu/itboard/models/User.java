@@ -10,8 +10,6 @@ import java.util.UUID;
 public class User {
     private String id = UUID.randomUUID().toString();
 
-    private String login;
-
     private String name;
 
     private Map<String, User> subscribers;
@@ -19,10 +17,10 @@ public class User {
     private Map<String, User> subscriptions;
 
     private boolean isPrivateProfile;
-    // lol
-    private String encryptedLogin;
 
-    private String encryptedPassword;
+    private String login;
+
+    private String password;
 
     public void generateId(){
         id = UUID.randomUUID().toString();

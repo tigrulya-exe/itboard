@@ -2,6 +2,7 @@ package ru.nsu.itboard.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.nsu.itboard.exceptions.NotFoundException;
 import ru.nsu.itboard.models.User;
 import ru.nsu.itboard.models.UserTo;
 import ru.nsu.itboard.repositories.UserRepository;
@@ -15,11 +16,23 @@ import java.util.Map;
 import static ru.nsu.itboard.util.Converter.*;
 @Service
 public class UserService {
+
     private UserRepository userRepository;
 
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    public String login(String username){
+        try{
+            User user = userRepository.getUserByLogin(username);
+            return user.getId();
+        } catch (NotFoundException e){
+            User user = new User();
+            user = addUser(user);
+            return user.getId();
+        }
     }
 
     public User getUser(String userId){

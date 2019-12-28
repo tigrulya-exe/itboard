@@ -23,13 +23,7 @@ public class LoginController {
 
     @GetMapping(LOGIN_PATH + "/{username}")
     public String login(@PathVariable String username){
-        try{
-            //User user = userService.getUser(username);
-            return "1";
-        }
-        catch (NotFoundException e){
-            return "1";
-        }
+        return userService.login(username);
     }
 
 }
