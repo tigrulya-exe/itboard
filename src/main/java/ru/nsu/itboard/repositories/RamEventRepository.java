@@ -17,6 +17,28 @@ public class RamEventRepository implements EventRepository{
 
     private Map<String, List<String>> eventParticipants = new HashMap<>();
 
+    public RamEventRepository(){
+        var first = Event.builder()
+                .beginDate("today")
+                .description("krasivoe meropriyatieye v centre Chiti")
+                .duration("500 let")
+                .location("Moscow")
+                .organizerId("organizator")
+                .maxParticipants(400)
+                .build();
+        events.put(first.getId(), first);
+
+        var second = Event.builder()
+                .beginDate("tomorrow")
+                .description("krasivoe meropriyatieye v centre Irkutska")
+                .duration("00 let")
+                .location("piter")
+                .organizerId("organizator")
+                .maxParticipants(90)
+                .build();
+        events.put(second.getId(), second);
+    }
+
     private Event checkEvent(String eventId){
         Event event = events.get(eventId);
         if(event == null)
