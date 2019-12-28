@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ru.nsu.itboard.exceptions.NotFoundException;
 import ru.nsu.itboard.exceptions.WrongArgumentException;
 
-@RestControllerAdvice
+@RestControllerAdvice("ru.nsu.itboard")
 public class ItBoardExceptionHandler {
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<?> handleNotFound(NotFoundException nfe){
