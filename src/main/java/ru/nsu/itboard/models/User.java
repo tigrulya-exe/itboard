@@ -10,6 +10,8 @@ import java.util.UUID;
 public class User {
     private String id = UUID.randomUUID().toString();
 
+    private String login;
+
     private String name;
 
     private Map<String, User> subscribers;

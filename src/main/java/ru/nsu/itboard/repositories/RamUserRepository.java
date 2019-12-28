@@ -10,6 +10,15 @@ import java.util.*;
 
 @Repository
 public class RamUserRepository implements UserRepository {
+
+    @Override
+    public User getUserByLogin(String login) {
+//        for (User user: users.entrySet()){
+//
+//        }
+        return null;
+    }
+
     private Map<String, User> users = new HashMap<>();
 
     private User checkUser(String userId){
