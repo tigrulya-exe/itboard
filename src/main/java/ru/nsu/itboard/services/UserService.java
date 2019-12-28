@@ -9,11 +9,11 @@ import ru.nsu.itboard.repositories.UserRepository;
 import ru.nsu.itboard.util.UserFilterContext;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import static ru.nsu.itboard.util.Converter.*;
+
 @Service
 public class UserService {
 
