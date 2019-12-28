@@ -2,7 +2,6 @@ package ru.nsu.itboard.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.nsu.itboard.models.User;
 import ru.nsu.itboard.models.UserTo;
@@ -10,7 +9,6 @@ import ru.nsu.itboard.services.UserService;
 import ru.nsu.itboard.util.UserFilterContext;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
