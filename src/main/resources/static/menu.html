@@ -16,6 +16,8 @@
   <!-- Custom styles for this template -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="./css/style.css">
+
 </head>
 
 <body>
@@ -26,9 +28,9 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">ITBoard </div>
       <div class="list-group list-group-flush">
-        <a href="#" onclick="getEvents()" class="list-group-item list-group-item-action bg-light">Events</a>
-        <a href="#" onclick="showSearch()" class="list-group-item list-group-item-action bg-light">Search</a>
-        <a href="#" onclick="showProfile()" class="list-group-item list-group-item-action bg-light">Profile</a>
+        <a href="#" id="getEvents" class="list-group-item list-group-item-action bg-light">Events</a>
+        <a href="#" id="search" class="list-group-item list-group-item-action bg-light">Search</a>
+        <a href="#" id="showProfile" class="list-group-item list-group-item-action bg-light">Profile</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -45,9 +47,9 @@
 
       </nav>
 
-      <code id="page-content">
+      <div id="page-content">
 
-      </code>
+      </div>
       <!--<div class="container-fluid">-->
         <!--<h1 class="mt-4">Simple Sidebar</h1>-->
         <!--<p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>-->
