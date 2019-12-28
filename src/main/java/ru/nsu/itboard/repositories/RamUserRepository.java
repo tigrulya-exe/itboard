@@ -13,10 +13,12 @@ public class RamUserRepository implements UserRepository {
 
     @Override
     public User getUserByLogin(String login) {
-//        for (User user: users.entrySet()){
-//
-//        }
-        return null;
+        for (Map.Entry<String, User> entry: users.entrySet()){
+            if(entry.getValue().getLogin().equals(login)){
+                return entry.getValue();
+            }
+        }
+        throw new NotFoundException("No such login");
     }
 
     private Map<String, User> users = new HashMap<>();
