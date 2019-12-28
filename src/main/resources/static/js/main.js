@@ -93,6 +93,7 @@ function createCardTemplate(event) {
     <p>Дата: ${event.beginDate}</p>
     <p>Продолжительность: ${event.duration}</p>
     <p>Описание: ${event.description}</p>
+    <button class="btn btn-primary">Присоедениться</button>
   </div>
     `
 }
