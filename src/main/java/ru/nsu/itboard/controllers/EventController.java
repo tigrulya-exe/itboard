@@ -1,5 +1,6 @@
 package ru.nsu.itboard.controllers;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ import java.util.List;
 @ComponentScan(value = "ru.nsu.itboard.exceptions")
 public class EventController {
 
-    private static final String EVENT_PATH = "/event";
+    private static final String EVENT_PATH = "/events";
 
     private EventService eventService;
 
@@ -23,32 +24,36 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @GetMapping(EVENT_PATH + "/list")
+    @GetMapping(EVENT_PATH)
+    @ApiOperation(value = "Получение всех мероприятий")
     public List<Event> getAllEvents(){
         return eventService.getAllEvents();
     }
 
-    @GetMapping(EVENT_PATH + "/user-{eventId}/participants")
+    @GetMapping(EVENT_PATH + "/{eventId}/participants")
+    @ApiOperation(value = "Получение всех участников мероприятия")
     public List<UserTo> getEventParticipants(@PathVariable String eventId){
         return eventService.getEventParticipants(eventId);
     }
 
-    @GetMapping(EVENT_PATH + "/user-{userId}/org-list")
+    @GetMapping(EVENT_PATH + "/{userId}/events")
+    @ApiOperation(value = "Получение всех мероприятий конкретного пользователя")
     public List<Event> getUserEvents(@PathVariable String userId){
         return eventService.getUserEvents(userId);
     }
 
-    @GetMapping(EVENT_PATH + "/user-{userId}/participate-list")
+    @GetMapping(EVENT_PATH + "/{userId}/takeParts")
+    @ApiOperation(value = "Получение всех мероприятий в которых участвовал конкретный пользователь")
     public List<Event> getEventsUserTakePartIn(@PathVariable String userId){
         return eventService.getEventsUserTakePartIn(userId);
     }
 
     @GetMapping(EVENT_PATH + "/list/filter")
-    public List<Event> getFilteredEvents(EventFilterContext eventFilterContext){
+    public List<Event> getFilteredEvents(@RequestBody EventFilterContext eventFilterContext){
         return eventService.getFilteredEvents(eventFilterContext);
     }
 
-    @PutMapping(EVENT_PATH + "/{eventId}/participate/user-{userId}")
+    @PutMapping(EVENT_PATH + "/{eventId}/participate?user={userId}")
     public void takePartRequest(@PathVariable String eventId, @PathVariable String userId){
         eventService.takePartRequest(eventId, userId);
     }

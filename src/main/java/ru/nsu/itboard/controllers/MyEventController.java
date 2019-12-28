@@ -11,7 +11,7 @@ import ru.nsu.itboard.services.EventService;
 
 public class MyEventController {
 
-    private static final String MY_EVENT_PATH = "/my-event";
+    private static final String MY_EVENT_PATH = "/events";
 
     private EventService eventService;
 
@@ -35,17 +35,17 @@ public class MyEventController {
         eventService.editEvent(eventId, event);
     }
 
-    @PutMapping(MY_EVENT_PATH + "/{eventId}/add/participant/{userId}")
+    @PostMapping(MY_EVENT_PATH + "/{eventId}/{userId}")
     public void addParticipant(@PathVariable String eventId, @PathVariable String userId){
         eventService.addParticipant(eventId, userId);
     }
 
-    @PutMapping(MY_EVENT_PATH + "/{eventId}/delete/participant/{userId}")
+    @DeleteMapping(MY_EVENT_PATH + "/{eventId}/{userId}")
     public void deleteParticipant(@PathVariable String eventId, @PathVariable String userId){
         eventService.deleteParticipant(eventId, userId);
     }
 
-    @DeleteMapping(MY_EVENT_PATH + "/{eventId}/delete")
+    @DeleteMapping(MY_EVENT_PATH + "/{eventId}")
     public void deleteEvent(@PathVariable String eventId){
         eventService.deleteEvent(eventId);
     }
