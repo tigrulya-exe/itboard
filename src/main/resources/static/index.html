@@ -30,13 +30,13 @@
                         <div class="col-md-9 col-lg-8 mx-auto">
                             <h3 class="login-heading mb-4">Welcome back!</h3>
                             <!--<form action="http://localhost:8080/event/list" method="get">-->
-                            <form action="http://localhost:8080/event/list" method="get">
+                            <form >
                                 <div class="form-label-group">
-                                    <input id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                                    <label for="inputEmail">Username</label>
+                                    <input id="username" class="form-control" placeholder="Email address" required autofocus>
+                                    <label for="username">Username</label>
                                 </div>
 
-                                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
+                                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" onclick="login()">Sign in</button>
                             </form>
                         </div>
                     </div>
@@ -47,4 +47,6 @@
 </div>
 
 </body>
+
+<script src="js/login.js"></script>
 </html>
