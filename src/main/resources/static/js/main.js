@@ -33,6 +33,16 @@
 //     oReq.send();
 // }
 
+function devideToSubarrays(array) {
+    let size = 3;
+    let subarray = [];
+
+    for (let i = 0; i <Math.ceil(array.length/size); i++){
+        subarray[i] = array.slice((i*size), (i*size) + size);
+    }
+
+    return subarray;
+}
 
 function addListeners() {
     document.querySelector('#getEvents')
@@ -51,13 +61,40 @@ async function getAllEvents() {
     const response = await fetch(url);
     const events = await response.json();
 
+    console.log(events);
+
     drawEvents(events);
 }
 
 function drawEvents(events) {
     const pageContent = document.querySelector('#page-content');
-    
-    pageContent.textContent = `С сервера пришло ${events.length} событий`;
+    pageContent.innerHTML = '';
+
+    const zippedEvents = devideToSubarrays(events);
+
+    zippedEvents.forEach(pack => {
+        const row = document.createElement('div');
+        row.classList.add('row');
+
+        pack.forEach(event => {
+            const eventTemplate = createCardTemplate(event);
+            row.innerHTML += eventTemplate;
+        });
+
+        pageContent.appendChild(row);
+    })
+}
+
+function createCardTemplate(event) {
+    return `
+    <div class="col-md-3 card" data-id="${event.id}">
+    <p>Максимальное количество участников: ${event.maxParticipants}</p>
+    <p>Расположение: ${event.location}</p>
+    <p>Дата: ${event.beginDate}</p>
+    <p>Продолжительность: ${event.duration}</p>
+    <p>Описание: ${event.description}</p>
+  </div>
+    `
 }
 
 function showSearchPage() {
