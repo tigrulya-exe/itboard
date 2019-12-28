@@ -34,16 +34,45 @@
 // }
 
 
+function addListeners() {
+    document.querySelector('#getEvents')
+        .addEventListener('click', getAllEvents);
 
+    document.querySelector('#search')
+        .addEventListener('click', showSearchPage);
+
+    document.querySelector('#showProfile')
+        .addEventListener('click', showProfileInfo);
+}
 
 async function getAllEvents() {
     const url = '/events';
 
-    const events = await fetch(url);
+    const response = await fetch(url);
+    const events = await response.json();
 
-    console.log(await events.json());
+    drawEvents(events);
+}
+
+function drawEvents(events) {
+    const pageContent = document.querySelector('#page-content');
+    
+    pageContent.textContent = `С сервера пришло ${events.length} событий`;
+}
+
+function showSearchPage() {
+    const pageContent = document.querySelector('#page-content');
+    
+    pageContent.textContent = `Макет поисковой хрени`;
+}
+
+function showProfileInfo() {
+    const pageContent = document.querySelector('#page-content');
+    
+    pageContent.textContent = `Макет профиля`;
 }
 
 window.onload = () => {
+    addListeners();
     getAllEvents();
 }
