@@ -48,12 +48,14 @@ public class EventController {
         return eventService.getEventsUserTakePartIn(userId);
     }
 
-    @GetMapping(EVENT_PATH + "/list/filter")
+    @GetMapping(EVENT_PATH + "/filter")
+    @ApiOperation(value = "Получение мероприятий, подходящих определенным условиям")
     public List<Event> getFilteredEvents(@RequestBody EventFilterContext eventFilterContext){
         return eventService.getFilteredEvents(eventFilterContext);
     }
 
     @PutMapping(EVENT_PATH + "/{eventId}/participate?user={userId}")
+    @ApiOperation(value = "Запрос на участие в мероприятии")
     public void takePartRequest(@PathVariable String eventId, @PathVariable String userId){
         eventService.takePartRequest(eventId, userId);
     }
