@@ -70,7 +70,7 @@ function drawEvents(events) {
 
     zippedEvents.forEach(pack => {
         const row = document.createElement("div");
-        row.classList.add("row");
+        row.classList.add("row" , "justify-content-between");
 
         pack.forEach(event => {
             const card = document.createElement("div");
@@ -102,7 +102,8 @@ async function subscribeToEvent() {
 
     if (response.status == 200 || response.status == 201)
         alert("Вы подписаны на событие!");
-    else alert("Произшла ошибка!");
+    else 
+        alert("Произшла ошибка!");
 }
 
 function createCardTemplate(event) {
@@ -123,12 +124,22 @@ function showSearchPage() {
     searchForm.addEventListener("submit", search);
 }
 
-function search(event) {
+async function search(event) {
     event.preventDefault();
 
     const searchValue = document.querySelector("#searchInput").value;
     const searchCategoty = Object.fromEntries(new FormData(event.target).entries()).category;
-    console.log(searchCategoty)
+    
+    const url = `/${searchCategoty}/search`
+    const options = {
+        method : 'POST',
+        body : JSON.stringify({name : searchValue})
+    };
+
+    const response = await fetch(url, options);
+    const data = await response.json();
+
+    console.log(data);
 }
 
 function showProfileInfo() {
