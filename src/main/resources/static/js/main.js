@@ -63,11 +63,17 @@ function addListeners() {
         .querySelector("#getEvents")
         .addEventListener("click", getAllEvents);
 
-    document.querySelector("#search").addEventListener("click", showSearchPage);
+    document
+        .querySelector("#search")
+        .addEventListener("click", showSearchPage);
 
     document
         .querySelector("#showProfile")
         .addEventListener("click", showProfileInfo);
+
+    document
+        .querySelector('#addEvent')
+        .addEventListener('click', showAddEventPage);
 }
 
 async function getAllEvents() {
@@ -187,6 +193,11 @@ async function showProfileInfo() {
     const events = await secondResponse.json();
 
     drawEvents(events, true);
+}
+
+function showAddEventPage() {
+    document.querySelector("#content__content").innerHTML = '';
+    document.querySelector("#content__menu").innerHTML = '';
 }
 
 window.onload = () => {
