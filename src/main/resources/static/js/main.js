@@ -28,6 +28,25 @@ const searchPageTemplate = `
         </div>
 `;
 
+function createProfilePageTemplate(following, name, followers) {
+    return `
+    <div class="row">
+    <div class="col-md-4 text-align-center">
+      <p class="following">Подписчиков</p>
+      <p class="following-number">${following}</p>
+    </div>
+    <div class="col-md-4 text-align-center">
+      <div class="row"><div class="col-md-12"><img src="http://vovet.ru/uploads/img/87/2d2008efd304884c51cf7c6825e12bb8-650.jpg" alt=""></div></div>
+      <div class="row"><p class="user-name col-md-12">${name}</p></div>
+    </div>
+    <div class="col-md-4 text-align-center">
+      <p class="followers">Подписано</p>
+      <p class="followers-number">${followers}</p>
+    </div>
+    </div>
+    `
+};
+
 function devideToSubarrays(array) {
     let size = 3;
     let subarray = [];
@@ -145,8 +164,19 @@ async function search(event) {
         drawUsers(data);
 }
 
-function showProfileInfo() {
+async function showProfileInfo() {
+    const pageContent = document.querySelector("#content__menu");
+
     document.querySelector("#content__content").innerHTML = '';
+
+    const url = `/users/${sessionStorage.getItem('id')}`;
+
+    const response = await fetch(url);
+    const user = await response.json();
+
+    profilePageTemplate = createProfilePageTemplate();
+    pageContent.innerHTML = profilePageTemplate;
+    console.log(user);
 }
 
 window.onload = () => {
