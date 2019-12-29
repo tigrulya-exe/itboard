@@ -12,6 +12,8 @@ public class Event {
 
     private String id = UUID.randomUUID().toString();
 
+    private String name;
+
     private String organizerId;
 
     private int maxParticipants;

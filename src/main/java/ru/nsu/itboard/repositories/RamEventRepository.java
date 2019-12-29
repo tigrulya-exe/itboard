@@ -22,20 +22,25 @@ public class RamEventRepository implements EventRepository{
                 .beginDate("today")
                 .description("krasivoe meropriyatieye v centre Chiti")
                 .duration("500 let")
+                .name("Chita yubiley")
                 .location("Moscow")
                 .organizerId("organizator")
                 .maxParticipants(400)
                 .build();
+        first.generateId();
+        System.out.println(first.getId());
         events.put(first.getId(), first);
 
         var second = Event.builder()
                 .beginDate("tomorrow")
                 .description("krasivoe meropriyatieye v centre Irkutska")
                 .duration("00 let")
+                .name("Irkutsk yubiley")
                 .location("piter")
                 .organizerId("organizator")
                 .maxParticipants(90)
                 .build();
+        second.generateId();
         events.put(second.getId(), second);
     }
 
