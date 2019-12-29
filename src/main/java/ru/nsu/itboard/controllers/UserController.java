@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.nsu.itboard.models.User;
 import ru.nsu.itboard.models.UserTo;
 import ru.nsu.itboard.services.UserService;
-import ru.nsu.itboard.util.UserFilterContext;
 
 import java.util.Collection;
 import java.util.List;
