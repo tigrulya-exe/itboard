@@ -70,11 +70,11 @@ function drawEvents(events) {
 
     zippedEvents.forEach(pack => {
         const row = document.createElement("div");
-        row.classList.add("row");
+        row.classList.add("row", 'justify-content-around');
 
         pack.forEach(event => {
             const card = document.createElement("div");
-            card.classList.add("col-md-4", "card");
+            card.classList.add("col-md-3", "card", "mr-1");
 
             const eventTemplate = createCardTemplate(event);
             card.innerHTML = eventTemplate;
