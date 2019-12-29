@@ -1,9 +1,8 @@
 package ru.nsu.itboard.models;
 
 import lombok.Data;
-import lombok.Singular;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -13,11 +12,9 @@ public class User {
 
     private String name;
 
-    @Singular
-    private Map<String, User> subscribers;
+    private Map<String, User> subscribers = new HashMap<>();
 
-    @Singular
-    private Map<String, User> subscriptions;
+    private Map<String, User> subscriptions = new HashMap<>();
 
     private boolean isPrivateProfile;
 

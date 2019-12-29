@@ -48,7 +48,7 @@ public class EventController {
         return eventService.getEventsUserTakePartIn(userId);
     }
 
-    @GetMapping(EVENT_PATH + "/search")
+    @PostMapping(EVENT_PATH + "/search")
     @ApiOperation(value = "Получение мероприятий, подходящих определенным условиям")
     public List<Event> getFilteredEvents(@RequestBody EventFilterContext eventFilterContext){
         return eventService.getFilteredEvents(eventFilterContext);
