@@ -62,15 +62,17 @@ async function getAllEvents() {
     drawEvents(events);
 }
 
-function drawEvents(events) {
+function drawEvents(events, clearBody = true) {
     const pageContent = document.querySelector("#page-content");
-    pageContent.innerHTML = "";
+
+    if (clearBody)
+        pageContent.innerHTML = "";
 
     const zippedEvents = devideToSubarrays(events);
 
     zippedEvents.forEach(pack => {
         const row = document.createElement("div");
-        row.classList.add("row", 'justify-content-around');
+        row.classList.add("row", 'justify-content-around', 'mt-3');
 
         pack.forEach(event => {
             const card = document.createElement("div");
@@ -134,9 +136,9 @@ async function search(event) {
     const url = `/${searchCategoty}/search?name=${searchValue}`
 
     const response = await fetch(url);
-    const data = await response.json();
+    const events = await response.json();
 
-    console.log(data);
+    drawEvents(events, false);
 }
 
 function showProfileInfo() {
