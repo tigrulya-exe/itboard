@@ -1,38 +1,3 @@
-// var id;
-
-// function reqListener () {
-//     console.log(this.responseText);
-//     id = this.responseText;
-//     window.location.href = "http://localhost:8080/menu.html";
-// }
-
-// function login(){
-//     var userName = document.getElementById("username").value;
-//     var oReq = new XMLHttpRequest();
-//     oReq.onload = reqListener;
-//     oReq.open("get", "http://localhost:8080/login/" + userName, true);
-//     oReq.send();
-// }
-
-// function showEvents() {
-//     document.getElementById('page-content').innerHTML = this.responseText;
-// }
-
-// function showProfile() {
-//     document.getElementById('page-content').innerHTML = "profile";
-// }
-
-// function showSearch() {
-//     document.getElementById('page-content').innerHTML = "search";
-// }
-
-// function getEvents() {
-//     var oReq = new XMLHttpRequest();
-//     oReq.onload = showEvents;
-//     oReq.open("get", "http://localhost:8080/event/list", true);
-//     oReq.send();
-// }
-
 function devideToSubarrays(array) {
     let size = 3;
     let subarray = [];
@@ -77,24 +42,46 @@ function drawEvents(events) {
         row.classList.add('row');
 
         pack.forEach(event => {
+            const card = document.createElement('div');
+            card.classList.add('col-md-3', 'card')
+
             const eventTemplate = createCardTemplate(event);
-            row.innerHTML += eventTemplate;
+            card.innerHTML = eventTemplate;
+
+            const followButton = document.createElement('button');
+            followButton.classList.add('btn', 'btn-primary');
+            followButton.dataset.id = event.id;
+            followButton.addEventListener('click', subscribeToEvent);
+            followButton.textContent = 'Присоедениться';
+
+            card.appendChild(followButton);
+            row.appendChild(card);
         });
 
         pageContent.appendChild(row);
     })
 }
 
+async function subscribeToEvent() {
+    const userId = sessionStorage.getItem('id');
+    const eventId = this.dataset.id;
+    const url = `/events/${eventId}/${userId}`;
+
+    const response = await fetch(url, {method: 'POST'});
+
+    if (response.status == 200 || response.status == 201)
+        alert('Вы подписаны на событие!');
+    else
+        alert('Произшла ошибка!');
+}
+
 function createCardTemplate(event) {
     return `
-    <div class="col-md-3 card" data-id="${event.id}">
     <p>Максимальное количество участников: ${event.maxParticipants}</p>
     <p>Расположение: ${event.location}</p>
     <p>Дата: ${event.beginDate}</p>
     <p>Продолжительность: ${event.duration}</p>
     <p>Описание: ${event.description}</p>
-    <button class="btn btn-primary">Присоедениться</button>
-  </div>
     `
 }
 
