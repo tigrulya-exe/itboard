@@ -108,6 +108,7 @@ async function subscribeToEvent() {
 
 function createCardTemplate(event) {
     return `
+    <p>Название: ${event.name}</p>
     <p>Максимальное количество участников: ${event.maxParticipants}</p>
     <p>Расположение: ${event.location}</p>
     <p>Дата: ${event.beginDate}</p>
@@ -130,13 +131,9 @@ async function search(event) {
     const searchValue = document.querySelector("#searchInput").value;
     const searchCategoty = Object.fromEntries(new FormData(event.target).entries()).category;
     
-    const url = `/${searchCategoty}/search`
-    const options = {
-        method : 'POST',
-        body : JSON.stringify({name : searchValue})
-    };
+    const url = `/${searchCategoty}/search?name=${searchValue}`
 
-    const response = await fetch(url, options);
+    const response = await fetch(url);
     const data = await response.json();
 
     console.log(data);
