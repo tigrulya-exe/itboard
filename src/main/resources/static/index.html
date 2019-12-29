@@ -17,6 +17,8 @@
     <link href="css/login.css" rel="stylesheet">
 
     <script src="./vendor/jquery/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -40,8 +42,8 @@
                                 <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" id="loginButton">Sign in</button>
                             </form>
                             <div class="bd-example">
-                                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" data-toggle="modal" data-target="#signUpModal" onclick="$('#signUpModal').modal('toggle')" data-whatever="@mdo">Sign up</button>
-                                <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModal" aria-hidden="true">
+                                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" data-toggle="modal" data-target="#signUpModal">Sign up</button>
+                                <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" id="#signUpModal" aria-labelledby="signUpModal" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -78,7 +80,9 @@
     </div>
 </div>
 
-
+<script>
+    $('#signUpModal').modal('toggle');
+</script>
 
 </body>
 
