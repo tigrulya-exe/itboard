@@ -73,7 +73,8 @@ public class EventService {
     public void addParticipant(String eventId, String userId){
         User user = userRepository.getUser(userId);
         Event event = eventRepository.getEventById(eventId);
-        event.getParticipants().add(new UserTo(user));
+        var userTo = new UserTo(user);
+        event.getParticipants().add(userTo);
         eventRepository.updateEvent(eventId, event);
     }
 

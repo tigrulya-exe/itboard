@@ -28,7 +28,7 @@ public class Event {
 
     private String description;
 
-    @Singular
+    @Builder.Default
     private List<UserTo> participants = new ArrayList<>();
 
     private boolean isEnded;
