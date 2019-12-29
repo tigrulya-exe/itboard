@@ -50,7 +50,9 @@ public class EventService {
 
     //TODO Add filtration
     public List<Event> getFilteredEvents(String name){
-        return getAllEvents();
+        return getAllEvents().stream()
+                .filter(e -> name.equals(e.getName()))
+                .collect(Collectors.toList());
     }
 
     //TODO Add request verification by organizer

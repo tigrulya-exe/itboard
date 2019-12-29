@@ -55,7 +55,7 @@ public class RamUserRepository implements UserRepository {
     }
 
     @Override
-    public Collection<User> getUsers(UserFilterContext filterContext) {
+    public Collection<User> getUsers() {
         return users.values();
     }
 }

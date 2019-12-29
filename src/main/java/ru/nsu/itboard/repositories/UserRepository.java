@@ -16,7 +16,7 @@ public interface UserRepository {
 
     void updateUser(String userId, User user);
 
-    Collection<User> getUsers(UserFilterContext filterContext);
+    Collection<User> getUsers();
 
     User getUserByLogin(String login);
 }

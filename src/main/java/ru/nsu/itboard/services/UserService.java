@@ -6,11 +6,11 @@ import ru.nsu.itboard.exceptions.NotFoundException;
 import ru.nsu.itboard.models.User;
 import ru.nsu.itboard.models.UserTo;
 import ru.nsu.itboard.repositories.UserRepository;
-import ru.nsu.itboard.util.UserFilterContext;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static ru.nsu.itboard.util.Converter.*;
 
@@ -60,7 +60,9 @@ public class UserService {
     }
 
     public Collection<User> getUsers(String userName) {
-        return userRepository.getUsers(new UserFilterContext());
+        return userRepository.getUsers().stream()
+                .filter(u -> userName.equals(u.getName()))
+                .collect(Collectors.toList());
     }
 
     public User updateUser(String id, User userWithoutId) {
