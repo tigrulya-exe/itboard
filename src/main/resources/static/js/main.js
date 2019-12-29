@@ -57,16 +57,15 @@ async function getAllEvents() {
     const response = await fetch(url);
     const events = await response.json();
 
-    console.log(events);
-
     drawEvents(events);
 }
 
-function drawEvents(events, clearBody = true) {
-    const pageContent = document.querySelector("#page-content");
+function drawEvents(events, isMenu = false) {
+    const pageContent = document.querySelector("#content__content");
+    pageContent.innerHTML = '';
 
-    if (clearBody)
-        pageContent.innerHTML = "";
+    if (!isMenu)
+        document.querySelector('#content__menu').innerHTML = '';
 
     const zippedEvents = devideToSubarrays(events);
 
@@ -120,8 +119,10 @@ function createCardTemplate(event) {
 }
 
 function showSearchPage() {
-    const pageContent = document.querySelector("#page-content");
+    const pageContent = document.querySelector("#content__menu");
     pageContent.innerHTML = searchPageTemplate;
+
+    document.querySelector("#content__content").innerHTML = '';
 
     const searchForm = document.querySelector("#searchForm");
     searchForm.addEventListener("submit", search);
@@ -136,9 +137,12 @@ async function search(event) {
     const url = `/${searchCategoty}/search?name=${searchValue}`
 
     const response = await fetch(url);
-    const events = await response.json();
+    const data = await response.json();
 
-    drawEvents(events, false);
+    if (searchCategoty === 'events')
+        drawEvents(data, true)
+    else
+        drawUsers(data);
 }
 
 function showProfileInfo() {
