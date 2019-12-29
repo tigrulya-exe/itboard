@@ -146,9 +146,7 @@ async function search(event) {
 }
 
 function showProfileInfo() {
-    const pageContent = document.querySelector("#page-content");
-
-    pageContent.textContent = `Макет профиля`;
+    document.querySelector("#content__content").innerHTML = '';
 }
 
 window.onload = () => {
