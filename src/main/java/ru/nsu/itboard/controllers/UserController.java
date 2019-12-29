@@ -54,11 +54,11 @@ public class UserController {
         return userService.getSubscriptions(id);
     }
 
-    @GetMapping(USER_PATH + "/search?name={userName}")
+    @GetMapping(USER_PATH + "/search")
     @ApiOperation(value = "Поиск пользователя")
     public Collection<User> searchUsers(
-            @PathVariable String userName) {
-        return userService.getUsers(userName);
+            @RequestParam String name) {
+        return userService.getUsers(name);
     }
 
     @PostMapping(USER_PATH + "/{id}")
@@ -68,17 +68,17 @@ public class UserController {
         return userService.updateUser(id, userWithoutId);
     }
 
-    @PostMapping(USER_PATH + "/{id}/subscribe?to={subscribeToId}")
+    @PostMapping(USER_PATH + "/{id}/subscribe")
     @ApiOperation(value = "Подписка на пользователя")
     public void subscribeUser(@PathVariable String id,
-                                           @PathVariable String subscribeToId) {
-        userService.subscribeUser(id, subscribeToId);
+                                           @RequestParam String to) {
+        userService.subscribeUser(id, to);
     }
 
-    @PostMapping(USER_PATH + "/{id}/unsubscribe?from={unsubscribeToId}")
+    @PostMapping(USER_PATH + "/{id}/unsubscribe")
     @ApiOperation(value = "Отписка от пользователя")
     public void unsubscribeUser(@PathVariable String id,
-                                           @PathVariable String unsubscribeToId) {
-        userService.unsubscribeUser(id, unsubscribeToId);
+                                           @RequestParam String from) {
+        userService.unsubscribeUser(id, from);
     }
 }
