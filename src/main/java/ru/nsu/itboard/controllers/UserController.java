@@ -54,11 +54,11 @@ public class UserController {
         return userService.getSubscriptions(id);
     }
 
-    @GetMapping(USER_PATH + "/search")
+    @GetMapping(USER_PATH + "/search?name={userName}")
     @ApiOperation(value = "Поиск пользователя")
     public Collection<User> searchUsers(
-            @RequestBody UserFilterContext filterContext) {
-        return userService.getUsers(filterContext);
+            @PathVariable String userName) {
+        return userService.getUsers(userName);
     }
 
     @PostMapping(USER_PATH + "/{id}")

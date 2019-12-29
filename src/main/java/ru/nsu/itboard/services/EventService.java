@@ -49,7 +49,7 @@ public class EventService {
     }
 
     //TODO Add filtration
-    public List<Event> getFilteredEvents(EventFilterContext eventFilterContext){
+    public List<Event> getFilteredEvents(String name){
         return getAllEvents();
     }
 

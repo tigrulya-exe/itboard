@@ -59,8 +59,8 @@ public class UserService {
         return toUserTOs(users.values());
     }
 
-    public Collection<User> getUsers(UserFilterContext filterContext) {
-        return userRepository.getUsers(filterContext);
+    public Collection<User> getUsers(String userName) {
+        return userRepository.getUsers(new UserFilterContext());
     }
 
     public User updateUser(String id, User userWithoutId) {
