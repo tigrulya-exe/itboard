@@ -11,7 +11,10 @@ import ru.nsu.itboard.util.EventFilterContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import static ru.nsu.itboard.util.PatternFinder.*;
 
 @Service
 public class EventService {
@@ -51,7 +54,7 @@ public class EventService {
     //TODO Add filtration
     public List<Event> getFilteredEvents(String name){
         return getAllEvents().stream()
-                .filter(e -> name.equals(e.getName()))
+                .filter(e -> containsIgnoreCase( e.getName(), name))
                 .collect(Collectors.toList());
     }
 
@@ -90,4 +93,6 @@ public class EventService {
     public void deleteEvent(String eventId){
         eventRepository.deleteEvent(eventId);
     }
+
+
 }

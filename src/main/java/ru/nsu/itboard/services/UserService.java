@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static ru.nsu.itboard.util.Converter.*;
+import static ru.nsu.itboard.util.PatternFinder.*;
 
 @Service
 public class UserService {
@@ -61,7 +62,7 @@ public class UserService {
 
     public Collection<User> getUsers(String userName) {
         return userRepository.getUsers().stream()
-                .filter(u -> userName.equals(u.getName()))
+                .filter(u -> containsIgnoreCase(u.getName(), userName))
                 .collect(Collectors.toList());
     }
 
