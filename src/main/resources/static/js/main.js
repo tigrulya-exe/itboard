@@ -40,7 +40,7 @@ function createProfilePageTemplate(following, name, followers) {
       <div class="row"><p class="user-name col-md-12">${name}</p></div>
     </div>
     <div class="col-md-4 text-align-center">
-      <p class="followers">Подписано</p>
+      <p class="followers">Подписан</p>
       <p class="followers-number">${followers}</p>
     </div>
     </div>
@@ -174,9 +174,15 @@ async function showProfileInfo() {
     const response = await fetch(url);
     const user = await response.json();
 
-    profilePageTemplate = createProfilePageTemplate();
+    const following = user.subscriptions;
+    const followers = user.subscribers;
+    const name = user.name;
+
+    profilePageTemplate = createProfilePageTemplate(following.length, name, followers.length);
     pageContent.innerHTML = profilePageTemplate;
-    console.log(user);
+
+
+
 }
 
 window.onload = () => {
