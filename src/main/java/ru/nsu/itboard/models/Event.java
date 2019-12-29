@@ -12,6 +12,7 @@ import java.util.UUID;
 @Builder
 public class Event {
 
+    @Builder.Default
     private String id = UUID.randomUUID().toString();
 
     private String name;
@@ -27,6 +28,22 @@ public class Event {
     private String duration;
 
     private String description;
+
+    public Event(){
+    }
+
+    public Event(String id, String name, String organizerId, int maxParticipants, String location, String beginDate, String duration, String description, List<UserTo> participants, boolean isEnded) {
+        this.id = id;
+        this.name = name;
+        this.organizerId = organizerId;
+        this.maxParticipants = maxParticipants;
+        this.location = location;
+        this.beginDate = beginDate;
+        this.duration = duration;
+        this.description = description;
+        this.participants = participants;
+        this.isEnded = isEnded;
+    }
 
     @Builder.Default
     private List<UserTo> participants = new ArrayList<>();

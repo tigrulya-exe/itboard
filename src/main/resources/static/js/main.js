@@ -139,7 +139,7 @@ function drawEvents(events, isMenu = false) {
             followButton.classList.add("btn", "btn-primary");
             followButton.dataset.id = event.id;
             followButton.addEventListener("click", subscribeToEvent);
-            followButton.textContent = "Присоедениться";
+            followButton.textContent = "Присоединиться";
 
             card.appendChild(followButton);
             row.appendChild(card);
