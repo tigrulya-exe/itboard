@@ -47,6 +47,36 @@ function createProfilePageTemplate(following, name, followers) {
     `
 };
 
+const addEventPageTemplate = `
+<form id="addEventForm">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Название</label>
+              <input type="text" class="form-control" name="name" placeholder="Название:">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Максимально кол-во участников</label>
+              <input type="text" class="form-control" name="maxParticipants" placeholder="Максимально кол-во участников:">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Расположение</label>
+              <input type="text" class="form-control" name="location" placeholder="Расположение:">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Дата</label>
+              <input type="text" class="form-control" name="beginDate" placeholder="Дата:">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Продолжительность</label>
+              <input type="text" class="form-control" name="duration" placeholder="Продолжительность:">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Описание</label>
+              <textarea name="description" id="" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Добавить</button>
+          </form>
+`
+
 function devideToSubarrays(array) {
     let size = 3;
     let subarray = [];
@@ -196,8 +226,33 @@ async function showProfileInfo() {
 }
 
 function showAddEventPage() {
-    document.querySelector("#content__content").innerHTML = '';
+    document.querySelector("#content__content").innerHTML = addEventPageTemplate;
     document.querySelector("#content__menu").innerHTML = '';
+
+    const addEventForm = document.querySelector('#addEventForm');
+    addEventForm.addEventListener('submit', addEvent);
+}
+
+async function addEvent(event) {
+    event.preventDefault();
+
+    const formData = Object.fromEntries(new FormData(event.target).entries());
+    const url = '/events/add';
+    const options = {
+        method : 'POST',
+        body : JSON.stringify(formData),
+        headers: {
+            'content-type' : 'application/json'
+        }
+    }
+
+    const response = await fetch(url, options);
+    
+    if (response.status === 200 || response.status === 201)
+        alert('Событие добавлено!');
+    else
+        alert('Ошибка!');
+
 }
 
 window.onload = () => {
