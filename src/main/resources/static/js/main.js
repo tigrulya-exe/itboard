@@ -181,8 +181,12 @@ async function showProfileInfo() {
     profilePageTemplate = createProfilePageTemplate(following.length, name, followers.length);
     pageContent.innerHTML = profilePageTemplate;
 
+    const eventsURL = `/events/${sessionStorage.getItem('id')}/events`;
 
+    const secondResponse = await fetch(eventsURL);
+    const events = await secondResponse.json();
 
+    drawEvents(events, true);
 }
 
 window.onload = () => {
