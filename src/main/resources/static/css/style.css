@@ -10,3 +10,7 @@
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
 }
+
+.text-align-center {
+    text-align: center;
+}
