@@ -1,6 +1,7 @@
 package ru.nsu.itboard.models;
 
 import lombok.Data;
+import lombok.Singular;
 
 import java.util.List;
 import java.util.Map;
@@ -12,8 +13,10 @@ public class User {
 
     private String name;
 
+    @Singular
     private Map<String, User> subscribers;
 
+    @Singular
     private Map<String, User> subscriptions;
 
     private boolean isPrivateProfile;

@@ -2,7 +2,9 @@ package ru.nsu.itboard.models;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.Singular;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,7 +28,8 @@ public class Event {
 
     private String description;
 
-    private List<UserTo> participants;
+    @Singular
+    private List<UserTo> participants = new ArrayList<>();
 
     private boolean isEnded;
 
